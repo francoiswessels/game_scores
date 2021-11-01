@@ -2,9 +2,9 @@ import argparse
 import os.path as path
 from pathlib import Path
 
-from app.data.game_results import GameResultsFile
-from app.services.score_calc_service import get_team_points_df
-from app.services.score_output_service import get_leader_board
+from app.data.game_results_providers import GameResultsFile
+from app.services.points_calc_service import get_team_points_df
+from app.services.points_output_service import get_leader_board
 
 
 def run(args):

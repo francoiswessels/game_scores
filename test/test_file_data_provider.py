@@ -2,7 +2,7 @@ import unittest
 
 import pandas as pd
 
-from app.data.game_results import GameResultsFile
+from app.data.game_results_providers import GameResultsFile
 
 
 

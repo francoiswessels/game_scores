@@ -3,8 +3,8 @@ from numpy.lib.shape_base import expand_dims
 
 import pandas as pd
 
-from app.data.game_results import GameResultsFile
-from app.services.score_calc_service import get_team_points_df, get_win_loss_draw_df
+from app.data.game_results_providers import GameResultsFile
+from app.services.points_calc_service import get_team_points_df, get_win_loss_draw_df
 
 
 
