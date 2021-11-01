@@ -1,4 +1,4 @@
-# Game Scores
+# CLI League Ranking
 
 game_score is a maintainable, testable command-line application that will calculate the ranking table for a league, given some standard input, which looks like this:
 
