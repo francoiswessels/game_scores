@@ -53,3 +53,34 @@ optional arguments:
   -h, --help  show this help message and exit
   -s, --stat  include the won, lost, drawn stats ahead of the leaderboard
 ```
+
+## Testing
+
+The solution contains automated tests, written using unittest from the Python standard library. They can be run as follows:
+
+
+```shell
+user@host:~$ python3 -m unittest -v
+test_get_all_returns_expected_data (test.test_file_data_provider.TestGameFileProvider) ... ok
+test_get_team_points (test.test_score_calc_service.TestScoreCalcs) ... ok
+test_get_team_points_with_stats (test.test_score_calc_service.TestScoreCalcs) ... ok
+test_get_wins_losses_draws (test.test_score_calc_service.TestScoreCalcs) ... ok
+test_basic_output (test.test_score_printing.TestScorePringing) ... ok
+test_full_output (test.test_score_printing.TestScorePringing) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.098s
+
+OK
+```
+
+or if you don't want to see the test details:
+
+```shell
+user@host:~$ python3 -m unittest
+......
+----------------------------------------------------------------------
+Ran 6 tests in 0.094s
+
+OK
+```
