@@ -1,31 +1,29 @@
 import unittest
-import copy
 
-from app.models.game import GameResult
-from app.data_providers import FileDataProvider
+import pandas as pd
+
+from app.data.game_results import GameResultsFile
 
 
 
-class GameDataProvider(unittest.TestCase):
+class TestGameFileProvider(unittest.TestCase):
     def setUp(self):
-        self.fileProvider = FileDataProvider('./test/sample_data.dat')
-        self.expected_file_contents = [
-                GameResult('Lions', 3, 'Snakes', 3),
-                GameResult('Tarantulas', 1, 'FC Awesome', 0),
-                GameResult('Lions', 1, 'FC Awesome', 1),
-                GameResult('Tarantulas', 3, 'Snakes', 1),
-                GameResult('Lions', 4, 'Grouches', 0)
-            ]
+        self.fileProvider = GameResultsFile('./test/sample_data.dat')
+        self.expected_file_contents = pd.DataFrame(data=
+            {   
+                'player_1_name' : ['Lions', 'Tarantulas', 'Lions', 'Tarantulas', 'Lions'],
+                'player_1_score' : [3, 1, 1, 3, 4],
+                'player_2_name' : ['Snakes', 'FC Awesome', 'FC Awesome', 'Snakes', 'Grouches'],
+                'player_2_score' : [3, 0, 1, 1, 0],
+            })
     
     def test_get_all_returns_expected_data(self):
-        games_expected = copy.deepcopy(self.expected_file_contents)
+        games_expected = self.expected_file_contents.copy()
         games_actual = self.fileProvider.get_all()
         
         self.assertEqual(len(games_actual), len(games_expected), 'Some game data are missing')
-        for a, e in zip(games_actual, games_expected):
-            self.assertEqual(a, e)
+        pd.testing.assert_frame_equal(games_expected, games_actual)
         
-
     def tearDown(self) -> None:
         self.fileProvider = None
         self.expected_file_contents = []
